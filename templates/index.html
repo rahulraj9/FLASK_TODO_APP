@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MYTODO</a>
+            <a class="navbar-brand" href="/">MYTODO</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -54,14 +54,14 @@
 
     <div class="container">
         <h2>Add a TODO</h2>
-        <form>
+        <form action='/' method="POST">
             <div class="mb-3">
                 <label for="title" class="form-label">TODO LIST</label>
-                <input type="text" class="form-control" id="title" aria-describedby="title">
+                <input type="text" class="form-control" name="title" id="title" aria-describedby="title">
             </div>
             <div class="mb-3">
                 <label for="desc" class="form-label">TODO DESCRIPTION</label>
-                <input type="text" class="form-control" id="desc">
+                <input type="text" class="form-control" name='desc' id="desc">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -74,29 +74,22 @@
             <thead>
                 <tr>
                     <th scope="col">SNo</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Time</th>
                 </tr>
             </thead>
             <tbody>
+                {% for todo in allTodo %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.desc}}</td>
+                    <td>{{todo.date_created}}</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {% endfor %}
+
+
             </tbody>
         </table>
     </div>
